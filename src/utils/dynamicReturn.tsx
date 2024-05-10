@@ -1,4 +1,6 @@
 import { Dropdown } from "../components/Dropdown/Dropdown";
+import { ChipDropdown } from "../components/Dropdown/ChipDropdown";
+import { SearchInput } from "../components/Input/Input";
 
 type ElementType = {
   type: string;
@@ -17,7 +19,7 @@ export const dynamicReturn = ({
 }: ReturnComponentPropTypes) => {
   const obj: { [key: string]: JSX.Element } = {
     chipDropdown: (
-      <Dropdown
+      <ChipDropdown
         filter={filter}
         handleOnChange={handleOnChange}
         selectedFilterData={selectedFilterData}
@@ -31,7 +33,7 @@ export const dynamicReturn = ({
       />
     ),
     search: (
-      <Dropdown
+      <SearchInput
         filter={filter}
         handleOnChange={handleOnChange}
         selectedFilterData={selectedFilterData}
