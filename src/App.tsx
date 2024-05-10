@@ -1,5 +1,12 @@
+import { Filters } from "./components/Filters/Filters";
+import { FILTER_CONFIG } from "./config/filter.config";
+
 function App() {
-  return <></>;
+  return (
+    <>
+      <Filters config={FILTER_CONFIG} />
+    </>
+  );
 }
 
 export default App;
