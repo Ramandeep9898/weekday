@@ -3,16 +3,19 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 const initialState = {
   loading: true,
   jdList: null,
-  totalCount: null,
-  filterData: null,
+  nextUrl: "",
 };
 
 export const fetchData = createAsyncThunk(
   "sampleJd/fetchData",
-  async (_, thunkAPI) => {
+  async (nextUrl, thunkAPI) => {
+    console.log("HERE", nextUrl);
+
     try {
       const response = await fetch(
-        "https://asia-south1-bh-dev-apps.cloudfunctions.net/wa-automation/json?page=1&limit=9"
+        nextUrl
+          ? nextUrl
+          : "https://asia-south1-bh-dev-apps.cloudfunctions.net/wa-automation/json?page=1&limit=9"
       );
       if (!response.ok) {
         throw new Error("Failed to fetch data");
@@ -38,8 +41,7 @@ export const jobDetails = createSlice({
 
         state.jdList = action.payload.result;
         console.log("kk", state.jdList);
-
-        // state.filterData = action.payload.jdList;
+        state.nextUrl = action.payload.next;
       });
   },
 });

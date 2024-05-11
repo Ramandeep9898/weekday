@@ -6,12 +6,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import { getFilteredData } from "../../utils/getFilteredData";
 import { fetchData } from "../../redux/reducers/jdSlice";
+import "./filter.css";
 
 export const Filters = ({ config }: FiltersProps) => {
   const dispatch = useDispatch();
-  const { loading, jdList, totalCount } = useSelector(
-    (state) => state.jobDetails
-  );
+  const { loading, jdList, nextUrl } = useSelector((state) => state.jobDetails);
+
+  console.log("yo", nextUrl);
 
   const [sampleJdList, setSampleJdList] = useState([]);
 
@@ -53,24 +54,28 @@ export const Filters = ({ config }: FiltersProps) => {
   };
 
   return (
-    <div className="">
-      <div
-        className=""
-        style={{ display: "flex", alignItems: "center", gap: "20px" }}
-      >
+    <div className="filter-main">
+      <div className="filter-container">
         {config.map((filter) => (
-          <div className="" key={filter.name} style={{ width: "100%" }}>
+          <div className="filter" key={filter.name}>
             {dynamicReturn({ filter, handleOnChange, selectedFilterData })}
           </div>
         ))}
       </div>
-      <div className="" style={{ width: "100%" }}>
+      <div className="card-container">
         {sampleJdList?.map((ele, idx) => (
           <div className="" key={idx} style={{ display: "flex" }}>
             <JdCard data={ele} />
           </div>
         ))}
       </div>
+      <button
+        onClick={() => {
+          dispatch(fetchData(nextUrl));
+        }}
+      >
+        load more
+      </button>
     </div>
   );
 };

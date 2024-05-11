@@ -1,0 +1,24 @@
+.filter-main {
+  padding-left: 120px;
+  padding-right: 120px;
+}
+
+.filter-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.filter {
+  width: 100%;
+}
+
+.card-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 40px;
+
+  gap: 32px;
+}

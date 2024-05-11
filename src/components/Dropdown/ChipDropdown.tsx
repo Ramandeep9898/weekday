@@ -6,6 +6,8 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import Chip from "@mui/material/Chip";
+import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -18,15 +20,6 @@ const MenuProps = {
   },
 };
 
-// function getStyles(name: string, personName: readonly string[], theme: Theme) {
-//   return {
-//     fontWeight:
-//       personName.indexOf(name) === -1
-//         ? theme.typography.fontWeightRegular
-//         : theme.typography.fontWeightMedium,
-//   };
-// }
-
 export const ChipDropdown = ({
   filter,
   handleOnChange,
@@ -38,12 +31,23 @@ export const ChipDropdown = ({
 }) => {
   const { fields, label, name } = filter;
   //   const theme = useTheme();
-  const handleChange = (event: SelectChangeEvent) => {
+  let array = [];
+  const [personName, setPersonName] = useState<string[]>(
+    selectedFilterData[name] || []
+  );
+  const handleChange = (event: SelectChangeEvent<typeof personName>) => {
     const {
-      target: { value, name },
+      target: { value },
     } = event;
-    handleOnChange(name, value);
+    setPersonName(
+      // On autofill we get a stringified value.
+      typeof value === "string" ? value.split(",") : value
+    );
+    handleOnChange(name, personName);
   };
+
+  // const [searchParams, setSearchParams] = useSearchParams();
+  console.log(selectedFilterData, selectedFilterData[name]);
 
   return (
     <FormControl sx={{ m: 1, width: 300 }}>
@@ -53,7 +57,7 @@ export const ChipDropdown = ({
         id="demo-multiple-chip"
         multiple
         name={name}
-        value={selectedFilterData[name] || []}
+        value={personName}
         onChange={handleChange}
         input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
         renderValue={(selected) => (
