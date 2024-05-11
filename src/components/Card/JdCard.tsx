@@ -8,12 +8,16 @@ import IconButton, { IconButtonProps } from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import { red } from "@mui/material/colors";
 
-export const JdCard = () => {
+export const JdCard = ({ data }: any) => {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardHeader
         avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+          <Avatar
+            sx={{ bgcolor: red[500] }}
+            aria-label="recipe"
+            src={data.logoUrl}
+          >
             R
           </Avatar>
         }
@@ -22,8 +26,8 @@ export const JdCard = () => {
             {/* <MoreVertIcon /> */}
           </IconButton>
         }
-        title="Shrimp and Chorizo Paella"
-        subheader="September 14, 2016"
+        title={data.companyName}
+        subheader={data.jobRole}
       />
 
       <CardContent>
@@ -36,13 +40,7 @@ export const JdCard = () => {
         <Typography variant="subtitle2" fontWeight="fontWeightBold">
           About us
         </Typography>
-        <Typography variant="body1">
-          This impressive paella is a perfect party dish and a fun meal to cook
-          together with your guests. Add 1 cup of frozen peas along with the
-          mussels, if you like. This impressive paella is a perfect party dish
-          and a fun meal to cook together with your guests. Add 1 cup of frozen
-          peas along with the mussels, if you like.
-        </Typography>
+        <Typography variant="body1">{data.jobDetailsFromCompany}</Typography>
 
         <Typography
           variant="subtitle1"
@@ -53,7 +51,7 @@ export const JdCard = () => {
           Minimum Experience
         </Typography>
         <Typography variant="h6" fontWeight="fontWeightRegular">
-          2 years
+          {data.minExp === null ? 0 : data.minExp} years
         </Typography>
       </CardContent>
       <CardActions disableSpacing>

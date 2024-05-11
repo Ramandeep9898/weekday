@@ -3,64 +3,28 @@ export const FILTER_CONFIG = [
     type: "dropdown",
     name: "role",
     label: "Role",
-    departments: [
-      {
-        key: "engineering",
-        department: "ENGINEERING",
-        fields: [
-          {
-            label: "Frontend",
-            value: "frontend",
-          },
-          {
-            label: "Backend",
-            value: "backend",
-          },
-        ],
-      },
-
-      {
-        key: "design",
-        department: "Design",
-        fields: [
-          {
-            label: "Designer",
-            value: "designer",
-          },
-          {
-            label: "Design Manger",
-            value: "designManger",
-          },
-        ],
-      },
-    ],
-    required: false,
-  },
-
-  {
-    type: "dropdown",
-    name: "numberOfEmployees",
-    label: "Number of Employees",
     fields: [
       {
-        label: "1-10",
-        value: "1-10",
+        label: "Frontend",
+        value: "frontend",
       },
       {
-        label: "11-20",
-        value: "11-20",
+        label: "Backend",
+        value: "backend",
       },
       {
-        label: "21-50",
-        value: "21-50",
+        label: "Designer",
+        value: "designer",
       },
       {
-        label: "51-100",
-        value: "51-100",
+        label: "Design Manger",
+        value: "designManger",
       },
     ],
+
     required: false,
   },
+
   {
     type: "dropdown",
     name: "experience",
@@ -112,22 +76,22 @@ export const FILTER_CONFIG = [
     fields: [
       {
         label: "0L",
-        value: "0L",
+        value: 0,
       },
       {
         label: "10L",
-        value: "10L",
+        value: 1000000,
       },
       {
         label: "20L",
-        value: "20L",
+        value: 2000000,
       },
     ],
     required: false,
   },
   {
     type: "search",
-    name: "searchCompanyName",
+    name: "companyName",
     label: "Search Company Name",
     placeholder: "Search Company Name",
     defaultValue: "",
