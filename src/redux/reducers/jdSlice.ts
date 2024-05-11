@@ -39,7 +39,7 @@ export const jobDetails = createSlice({
       .addCase(fetchData.fulfilled, (state, action) => {
         state.loading = false;
 
-        state.jdList = action.payload.result;
+        state.jdList = [...(state.jdList ?? []), ...action.payload.result];
         console.log("kk", state.jdList);
         state.nextUrl = action.payload.next;
       });
