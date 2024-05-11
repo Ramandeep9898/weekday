@@ -1,25 +1,16 @@
-import { useEffect } from "react";
+import { Route, Routes } from "react-router-dom";
 
+import "./App.css";
 import { Filters } from "./components/Filters/Filters";
 import { FILTER_CONFIG } from "./config/filter.config";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchData } from "./redux/reducers/jdSlice";
 
 function App() {
-  const dispatch = useDispatch();
-  const { loading, jdList, totalCount } = useSelector(
-    (state) => state.jobDetails
-  );
-  // console.log();
-
-  useEffect(() => {
-    dispatch(fetchData());
-  }, []);
-
   return (
-    <>
-      <Filters config={FILTER_CONFIG} />
-    </>
+    <div className="">
+      <Routes>
+        <Route path="/" element={<Filters config={FILTER_CONFIG} />} />
+      </Routes>
+    </div>
   );
 }
 

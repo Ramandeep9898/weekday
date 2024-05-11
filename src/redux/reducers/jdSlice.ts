@@ -36,9 +36,10 @@ export const jobDetails = createSlice({
       .addCase(fetchData.fulfilled, (state, action) => {
         state.loading = false;
 
-        state.jdList = action.payload.jdList;
-        state.filterData = action.payload.jdList;
-        state.totalCount = action.payload.totalCount;
+        state.jdList = action.payload.result;
+        console.log("kk", state.jdList);
+
+        // state.filterData = action.payload.jdList;
       });
   },
 });

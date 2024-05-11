@@ -1,4 +1,5 @@
 import TextField from "@mui/material/TextField";
+import { useSearchParams } from "react-router-dom";
 
 export const SearchInput = ({
   filter,
@@ -9,12 +10,16 @@ export const SearchInput = ({
   handleOnChange: any;
   selectedFilterData: any;
 }) => {
+  const [searchParams, setSearchParams] = useSearchParams();
+
   return (
     <TextField
       id="outlined-basic"
       label="Outlined"
       variant="outlined"
-      value={selectedFilterData[filter.name] || ""}
+      value={
+        searchParams.get(filter.name) || selectedFilterData[filter.name] || ""
+      }
       name={filter.name || ""}
       onChange={(e) => handleOnChange(e.target.name, e.target.value)}
     />

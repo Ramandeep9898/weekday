@@ -3,6 +3,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
+import { useSearchParams } from "react-router-dom";
 
 export const Dropdown = ({
   filter,
@@ -13,6 +14,8 @@ export const Dropdown = ({
   handleOnChange: any;
   selectedFilterData: any;
 }) => {
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const handleChange = (event: SelectChangeEvent) => {
     handleOnChange(event.target.name, event.target.value);
   };
@@ -27,7 +30,7 @@ export const Dropdown = ({
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           name={name}
-          value={selectedFilterData[name] || ""}
+          value={searchParams.get(name) || selectedFilterData[name] || ""}
           onChange={handleChange}
         >
           {fields?.map((ele: any) => (
