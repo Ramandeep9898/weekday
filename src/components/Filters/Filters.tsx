@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { dynamicReturn } from "../../utils/dynamicReturn";
 import { FiltersProps } from "../../types/filters.type";
 import { JdCard } from "../Card/JdCard";
@@ -7,16 +7,21 @@ import { useSearchParams } from "react-router-dom";
 import { getFilteredData } from "../../utils/getFilteredData";
 import { fetchData } from "../../redux/reducers/jdSlice";
 import "./filter.css";
+import { Button } from "@mui/material";
+import { RootState } from "../../redux/store";
 
 export const Filters = ({ config }: FiltersProps) => {
   const dispatch = useDispatch();
-  const { loading, jdList, nextUrl } = useSelector((state) => state.jobDetails);
+  const { loading, jdList, nextUrl } = useSelector(
+    (state: RootState) => state.jobDetails
+  );
 
-  const [sampleJdList, setSampleJdList] = useState([]);
+  const [sampleJdList, setSampleJdList] = useState<any>([]);
 
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
+    //@ts-ignore
     dispatch(fetchData());
   }, []);
 
@@ -63,20 +68,30 @@ export const Filters = ({ config }: FiltersProps) => {
           </div>
         ))}
       </div>
-      <div className="card-container">
-        {sampleJdList?.map((ele, idx) => (
-          <div className="" key={idx} style={{ display: "flex" }}>
-            <JdCard data={ele} />
+      {loading ? (
+        "loading..."
+      ) : (
+        <>
+          <div className="card-container">
+            {sampleJdList?.map((ele: any) => (
+              <div className="" key={ele.jdUid} style={{ display: "flex" }}>
+                <JdCard data={ele} />
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-      <button
-        onClick={() => {
-          dispatch(fetchData(nextUrl));
-        }}
-      >
-        load more
-      </button>
+          <div className="load-more-container">
+            <Button
+              onClick={() => {
+                //@ts-ignore
+                dispatch(fetchData(nextUrl));
+              }}
+              variant="contained"
+            >
+              Load more
+            </Button>
+          </div>
+        </>
+      )}
     </div>
   );
 };

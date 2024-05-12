@@ -1,6 +1,12 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState = {
+export interface JobDetailsState {
+  loading: boolean;
+  jdList: any[] | null;
+  nextUrl: string;
+}
+
+const initialState: JobDetailsState = {
   loading: true,
   jdList: null,
   nextUrl: "",
@@ -8,7 +14,7 @@ const initialState = {
 
 export const fetchData = createAsyncThunk(
   "sampleJd/fetchData",
-  async (nextUrl, thunkAPI) => {
+  async (nextUrl: string, thunkAPI: { rejectWithValue: Function }) => {
     try {
       const response = await fetch(
         nextUrl
@@ -25,21 +31,25 @@ export const fetchData = createAsyncThunk(
     }
   }
 );
+
 export const jobDetails = createSlice({
   name: "jobDetails",
   initialState,
   reducers: {},
   extraReducers(builder) {
     builder
-      .addCase(fetchData.pending, (state, action) => {
+      .addCase(fetchData.pending, (state) => {
         state.loading = true;
       })
-      .addCase(fetchData.fulfilled, (state, action) => {
-        state.loading = false;
+      .addCase(
+        fetchData.fulfilled,
+        (state, action: PayloadAction<{ result: any[]; next: string }>) => {
+          state.loading = false;
 
-        state.jdList = [...(state.jdList ?? []), ...action.payload.result];
-        state.nextUrl = action.payload.next;
-      });
+          state.jdList = [...(state.jdList ?? []), ...action.payload.result];
+          state.nextUrl = action.payload.next;
+        }
+      );
   },
 });
 

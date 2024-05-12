@@ -1,7 +1,7 @@
-export const getFilteredData = (params, sampleJdList) => {
+export const getFilteredData = (params: any, sampleJdList: any) => {
   const { minimumBasePay, companyName, experience, role, location } = params;
 
-  const filteredList = sampleJdList.filter((jd) => {
+  const filteredList = sampleJdList.filter((jd: any) => {
     let passMinimumBasePay = true;
     let passCompanyName = true;
     let minExperience = true;

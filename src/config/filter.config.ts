@@ -74,26 +74,6 @@ export const FILTER_CONFIG = [
     required: false,
   },
   {
-    type: "chipDropdown",
-    name: "remote",
-    label: "Remote",
-    fields: [
-      {
-        label: "Remote",
-        value: "remote",
-      },
-      {
-        label: "Hybrid",
-        value: "hybrid",
-      },
-      {
-        label: "In-office",
-        value: "inOffice",
-      },
-    ],
-    required: false,
-  },
-  {
     type: "dropdown",
     name: "minimumBasePay",
     label: "Minimum Base Pay",
@@ -113,6 +93,27 @@ export const FILTER_CONFIG = [
     ],
     required: false,
   },
+  {
+    type: "chipDropdown",
+    name: "remote",
+    label: "Remote",
+    fields: [
+      {
+        label: "Remote",
+        value: "remote",
+      },
+      {
+        label: "Hybrid",
+        value: "hybrid",
+      },
+      {
+        label: "In-office",
+        value: "inOffice",
+      },
+    ],
+    required: false,
+  },
+
   {
     type: "search",
     name: "companyName",

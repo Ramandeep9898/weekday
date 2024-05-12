@@ -30,7 +30,7 @@ export const ChipDropdown = ({
   const { fields, label, name } = filter;
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const handleChange = (event: SelectChangeEvent<typeof personName>) => {
+  const handleChange = (event: SelectChangeEvent<any>) => {
     const {
       target: { value },
     } = event;
@@ -74,9 +74,7 @@ export const ChipDropdown = ({
                 key={index}
                 label={value}
                 onDelete={() =>
-                  handleChange({ target: { value } } as SelectChangeEvent<
-                    typeof personName
-                  >)
+                  handleChange({ target: { value } } as SelectChangeEvent<any>)
                 }
               />
             ))}

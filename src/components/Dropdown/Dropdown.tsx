@@ -43,20 +43,3 @@ export const Dropdown = ({
     </Box>
   );
 };
-
-{
-  /* {departments &&
-            departments.map((ele, index) => {
-              const { department, fields, key } = ele;
-              return (
-                <div className="" key={index}>
-                  <ListSubheader>{department}</ListSubheader>
-                  {fields &&
-                    fields.map((field, index) => {
-                      const { label, value } = field;
-                      return <MenuItem value={value}>{label}</MenuItem>;
-                    })}
-                </div>
-              );
-            })} */
-}
