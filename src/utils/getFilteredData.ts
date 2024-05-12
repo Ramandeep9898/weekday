@@ -1,11 +1,12 @@
 export const getFilteredData = (params, sampleJdList) => {
-  const { minimumBasePay, companyName, experience, role } = params;
+  const { minimumBasePay, companyName, experience, role, location } = params;
 
   const filteredList = sampleJdList.filter((jd) => {
     let passMinimumBasePay = true;
     let passCompanyName = true;
     let minExperience = true;
     let selectedRole = true;
+    let selectedLocation = true;
 
     if (minimumBasePay !== undefined && jd.minJdSalary !== null) {
       const minJdSalary = jd.minJdSalary !== null ? jd.minJdSalary * 83 : 0;
@@ -28,8 +29,18 @@ export const getFilteredData = (params, sampleJdList) => {
       selectedRole = jd.jobRole.toLowerCase().includes(role.toLowerCase());
     }
 
+    if (location !== undefined) {
+      selectedLocation = jd.location
+        .toLowerCase()
+        .includes(location.toLowerCase());
+    }
+
     return (
-      passMinimumBasePay && passCompanyName && minExperience && selectedRole
+      passMinimumBasePay &&
+      passCompanyName &&
+      minExperience &&
+      selectedRole &&
+      selectedLocation
     );
   });
 

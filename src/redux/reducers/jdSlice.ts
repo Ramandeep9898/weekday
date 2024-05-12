@@ -9,8 +9,6 @@ const initialState = {
 export const fetchData = createAsyncThunk(
   "sampleJd/fetchData",
   async (nextUrl, thunkAPI) => {
-    console.log("HERE", nextUrl);
-
     try {
       const response = await fetch(
         nextUrl
@@ -40,7 +38,6 @@ export const jobDetails = createSlice({
         state.loading = false;
 
         state.jdList = [...(state.jdList ?? []), ...action.payload.result];
-        console.log("kk", state.jdList);
         state.nextUrl = action.payload.next;
       });
   },

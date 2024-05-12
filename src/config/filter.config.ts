@@ -50,6 +50,30 @@ export const FILTER_CONFIG = [
     required: false,
   },
   {
+    type: "dropdown",
+    name: "location",
+    label: "Location",
+    fields: [
+      {
+        label: "Delhi NCR",
+        value: "delhi ncr",
+      },
+      {
+        label: "Mumbai",
+        value: "mumbai",
+      },
+      {
+        label: "Chennai",
+        value: "chennai",
+      },
+      {
+        label: "Bangalore",
+        value: "bangalore",
+      },
+    ],
+    required: false,
+  },
+  {
     type: "chipDropdown",
     name: "remote",
     label: "Remote",

@@ -12,8 +12,6 @@ export const Filters = ({ config }: FiltersProps) => {
   const dispatch = useDispatch();
   const { loading, jdList, nextUrl } = useSelector((state) => state.jobDetails);
 
-  console.log("yo", nextUrl);
-
   const [sampleJdList, setSampleJdList] = useState([]);
 
   const [searchParams, setSearchParams] = useSearchParams();
@@ -45,10 +43,13 @@ export const Filters = ({ config }: FiltersProps) => {
   // filter select handler
   const handleOnChange = (key: any, value: any) => {
     setSelectedFilterData((prevData) => ({ ...prevData, [key]: value }));
+
     // set params
     setSearchParams((prevSearchParams) => {
       const newSearchParams = new URLSearchParams(prevSearchParams);
-      newSearchParams.set(key, value);
+      if (key !== "remote") {
+        newSearchParams.set(key, value);
+      }
       return newSearchParams;
     });
   };
