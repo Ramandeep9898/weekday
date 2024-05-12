@@ -10,7 +10,7 @@ import "./filter.css";
 import { Button } from "@mui/material";
 import { RootState } from "../../redux/store";
 
-export const Filters = ({ config }: FiltersProps) => {
+export const Filters = ({ config }: any) => {
   const dispatch = useDispatch();
   const { loading, jdList, nextUrl } = useSelector(
     (state: RootState) => state.jobDetails
