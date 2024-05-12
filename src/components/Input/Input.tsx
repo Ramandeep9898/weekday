@@ -10,7 +10,7 @@ export const SearchInput = ({
   handleOnChange: any;
   selectedFilterData: any;
 }) => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, _] = useSearchParams();
 
   return (
     <TextField

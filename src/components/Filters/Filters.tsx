@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { dynamicReturn } from "../../utils/dynamicReturn";
-import { FiltersProps } from "../../types/filters.type";
+// import { FiltersProps } from "../../types/filters.type";
 import { JdCard } from "../Card/JdCard";
 import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
@@ -62,7 +62,7 @@ export const Filters = ({ config }: any) => {
   return (
     <div className="filter-main">
       <div className="filter-container">
-        {config.map((filter) => (
+        {config.map((filter: any) => (
           <div className="filter" key={filter.name}>
             {dynamicReturn({ filter, handleOnChange, selectedFilterData })}
           </div>

@@ -14,7 +14,7 @@ export const Dropdown = ({
   handleOnChange: any;
   selectedFilterData: any;
 }) => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, _] = useSearchParams();
 
   const handleChange = (event: SelectChangeEvent) => {
     handleOnChange(event.target.name, event.target.value);

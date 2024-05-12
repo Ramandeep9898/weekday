@@ -28,7 +28,7 @@ export const ChipDropdown = ({
   selectedFilterData: any;
 }) => {
   const { fields, label, name } = filter;
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [_, setSearchParams] = useSearchParams();
 
   const handleChange = (event: SelectChangeEvent<any>) => {
     const {
