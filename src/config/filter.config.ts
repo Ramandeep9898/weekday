@@ -103,10 +103,6 @@ export const FILTER_CONFIG = [
         value: "remote",
       },
       {
-        label: "Hybrid",
-        value: "hybrid",
-      },
-      {
         label: "In-office",
         value: "inOffice",
       },

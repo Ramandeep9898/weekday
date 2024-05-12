@@ -36,9 +36,15 @@ export const ChipDropdown = ({
     } = event;
 
     // Toggle selection
-    const updatedSelection = selectedFilterData[name]?.includes(value)
-      ? selectedFilterData[name].filter((item: string) => item !== value)
-      : [...(selectedFilterData[name] || []), value];
+    let fixedselectedFilterData = [];
+    if (value) {
+      for (let item of value) {
+        if (item.length > 1) {
+          fixedselectedFilterData.push(item);
+        }
+      }
+    }
+    const updatedSelection = fixedselectedFilterData;
 
     handleOnChange(name, updatedSelection);
 

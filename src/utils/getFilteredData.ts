@@ -1,5 +1,16 @@
 export const getFilteredData = (params: any, sampleJdList: any) => {
-  const { minimumBasePay, companyName, experience, role, location } = params;
+  const { minimumBasePay, companyName, experience, role, location, remote } =
+    params;
+  let remoteList = [];
+  let remoteVal: any;
+  if (remote) {
+    remoteList = remote.split(",");
+    for (let item of remoteList) {
+      if (item === "Remote") {
+        remoteVal = "remote";
+      }
+    }
+  }
 
   const filteredList = sampleJdList.filter((jd: any) => {
     let passMinimumBasePay = true;
@@ -7,6 +18,7 @@ export const getFilteredData = (params: any, sampleJdList: any) => {
     let minExperience = true;
     let selectedRole = true;
     let selectedLocation = true;
+    let remoteValue = true;
 
     if (minimumBasePay !== undefined && jd.minJdSalary !== null) {
       const minJdSalary = jd.minJdSalary !== null ? jd.minJdSalary * 83 : 0;
@@ -35,12 +47,17 @@ export const getFilteredData = (params: any, sampleJdList: any) => {
         .includes(location.toLowerCase());
     }
 
+    if (remoteVal) {
+      remoteValue = jd.location.toLowerCase().includes(remoteVal.toLowerCase());
+    }
+
     return (
       passMinimumBasePay &&
       passCompanyName &&
       minExperience &&
       selectedRole &&
-      selectedLocation
+      selectedLocation &&
+      remoteValue
     );
   });
 
